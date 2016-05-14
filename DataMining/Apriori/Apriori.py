@@ -117,7 +117,13 @@ def make_output(output_file, freq_itemsets, transaction_count):
             for itemset in map(set, powerset(freq_itemset)):
                 asso_itemset = freq_itemset - itemset
                 confidence = sup_count_dict[freq_frz_itemset] / sup_count_dict[frozenset(itemset)] * 100
-                output_file.write("%s\t%s\t%.2f\t%.2f\n" % (itemset, asso_itemset, support, confidence))
+                itemset_output = "{"
+                for item in itemset: itemset_output += item + ","
+                itemset_output = itemset_output[:-1] + "}"
+                assoset_output = "{"
+                for item in asso_itemset: assoset_output += item + ","
+                assoset_output = assoset_output[:-1] + "}"
+                output_file.write("%s\t%s\t%.2f\t%.2f\n" % (itemset_output, assoset_output, support, confidence))
 
 if __name__ == "__main__":
     sup_count_dict = {}

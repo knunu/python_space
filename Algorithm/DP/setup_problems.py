@@ -6,7 +6,7 @@ def find_case(n, p_s, s):
         else:
             if C_FT[n]: return C_FT[n]
         if n == C:
-            if p_s == True: return P[n] + AP[n-1]
+            if p_s: return P[n] + AP[n-1]
             else: return P[n] + AP[n-1] - 1
         if P[n] == 0:
             return 0
